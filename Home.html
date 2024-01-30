@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Cyber Security Awareness Campaign</title>
+    <style>
+        /* Custom styles for the cookie banner */
+        #cookie-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+
+        #cookie-banner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            display: none;
+            z-index: 9999;
+        }
+
+        #cookie-banner p {
+            margin-bottom: 10px;
+        }
+
+        #cookie-banner button {
+            margin: 5px;
+        }
+
+        /* Prevent scrolling when the cookie banner is displayed */
+        body.cookie-banner-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>CyberSafe Campaign</strong></li>
+        </ul>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#contact" role="button">Contact</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <div class="grid">
+            <section id="home">
+                <hgroup>
+                    <h2>Welcome to CyberSafe</h2>
+                    <h3>Your Guide to Online Safety</h3>
+                </hgroup>
+                <p>This campaign is dedicated to raising awareness about the importance of cyber security and providing practical tips for staying safe online.</p>
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?q=80&w=2369&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cyber Security" />
+                    <figcaption><a href="https://unsplash.com/photos/random" target="_blank">Photo by Unsplash</a></figcaption>
+                </figure>
+                <h3>Understanding Cyber Threats</h3>
+                <p>Learn about common cyber threats, how they operate, and how you can protect yourself from them.</p>
+                <h3>Best Practices for Online Safety</h3>
+                <p>Discover the best practices to keep your personal and professional data secure on the internet.</p>
+                <button id="download-survey" onclick="document.getElementById('download-popup').style.display = 'block'">Download Survey</button>
+            </section>
+        </div>
+    </main>
+    <section id="contact" aria-label="Subscribe example">
+        <div class="container">
+            <article>
+                <hgroup>
+                    <h2>Stay Updated</h2>
+                    <h3>Subscribe for Latest Tips</h3>
+                </hgroup>
+                <form class="grid">
+                    <input type="text" id="firstname" name="firstname" placeholder="Your Name" aria-label="Name" required />
+                    <input type="email" id="email" name="email" placeholder="Your Email" aria-label="Email" required />
+                    <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+                </form>
+            </article>
+        </div>
+    </section>
+    <footer class="container">
+        <small>
+            <a href="#">Privacy Policy</a> • <a href="#">Terms of Use</a>
+        </small>
+    </footer>
+
+    <div id="cookie-overlay"></div>
+
+    <div id="cookie-banner">
+        <p id="cookie-text">This website uses cookies to ensure you get the best experience on our website.</p>
+        <button id="learn-more" onclick="document.getElementById('cookie-text').textContent = 'Detailed cookie information...'; document.getElementById('learn-more').style.display = 'none'; document.getElementById('cookie-options').style.display = 'block';">Learn more</button>
+        <button id="accept-cookies" onclick="document.getElementById('cookie-overlay').style.display = 'none'; document.getElementById('cookie-banner').style.display = 'none'; document.body.classList.remove('cookie-banner-open');">Accept</button>
+        <div id="cookie-options" style="display: none;">
+            <p>Tracking cookies: <input type="checkbox" id="tracking-cookies" checked></p>
+            <p>Ad data: <input type="checkbox" id="ad-data" checked></p>
+            <!-- Add more sliders here -->
+            <button id="read-cookies" onclick="window.location.href='cookies.html'">Read cookies</button>
+        </div>
+    </div>
+
+    <div id="download-popup" style="display: none;">
+        <p>Download the survey</p>
+        <button id="close-popup" onclick="document.getElementById('download-popup').style.display = 'none'">Close</button>
+    </div>
+
+    <script>
+        // Show the cookie banner and overlay
+        document.getElementById('cookie-overlay').style.display = 'block';
+        document.getElementById('cookie-banner').style.display = 'block';
+
+        // Add a class to the body to prevent scrolling
+        document.body.classList.add('cookie-banner-open');
+
+        // When the user clicks the "Accept" button
+        document.getElementById('accept-cookies').onclick = function() {
+            // Hide the cookie banner and overlay
+            document.getElementById('cookie-overlay').style.display = 'none';
+            document.getElementById('cookie-banner').style.display = 'none';
+
+            // Remove the class from the body to allow scrolling
+            document.body.classList.remove('cookie-banner-open');
+        }
+
+        // When the user clicks the "Learn more" button
+        document.getElementById('learn-more').onclick = function() {
+            document.getElementById('cookie-text').textContent = 'Detailed cookie information...';
+            document.getElementById('learn-more').style.display = 'none';
+            document.getElementById('cookie-options').style.display = 'block';
+        }
+
+        // When the user clicks the "Download Survey" button
+        document.getElementById('download-survey').onclick = function() {
+            document.getElementById('download-popup').style.display = 'block';
+        }
+
+        // When the user clicks the "Close" button in the download popup
+        document.getElementById('close-popup').onclick = function() {
+            document.getElementById('download-popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
